@@ -30,11 +30,11 @@ plot3 <- function() {
       
       png("plot3.png", width=480, height=480, units="px")
       par(pch=".")
-      with(hhpc3, plot(DateTime, Sub_metering_3, main = "", ylim = c(0,30), xlab = "", ylab = "Energy sub metering"))
+      with(hhpc3, plot(DateTime, Sub_metering_1, main = "", type = "n", xlab = "", ylab = "Energy sub metering"))
       lines(hhpc3$DateTime, hhpc3$Sub_metering_1, type="o", xlab = "", ylab = "")
       lines(hhpc3$DateTime, hhpc3$Sub_metering_2, type="o", xlab = "", ylab = "", col="red")
       lines(hhpc3$DateTime, hhpc3$Sub_metering_3, type="o", xlab = "", ylab = "", col="blue")
-      legend("topright", pch = "-", col = c("black", "red","blue"), 
+      legend("topright", col = c("black", "red","blue"), lty=1, 
              legend = c("Sub metering 1", "Sub metering 2", "Sub metering 3"))
       dev.off()
       ##plot(hhpc$DateTime, hhpc$Global_active_power)

@@ -33,12 +33,13 @@ plot4 <- function() {
       with (hhpc, {
             plot(DateTime, Global_active_power, xlab = "", ylab = "Global Active Power", type="o")
             plot(DateTime, Voltage, xlab = "datetime", ylab = "Voltage", type="o")
-            plot(DateTime, Sub_metering_3, main = "", ylim = c(0,30), xlab = "", ylab = "Energy sub metering")
+            plot(DateTime, Sub_metering_1, main = "", type = "n", xlab = "", ylab = "Energy sub metering")
                   lines(hhpc$DateTime, hhpc$Sub_metering_1, type="o", xlab = "", ylab = "")
                   lines(hhpc$DateTime, hhpc$Sub_metering_2, type="o", xlab = "", ylab = "", col="red")
                   lines(hhpc$DateTime, hhpc$Sub_metering_3, type="o", xlab = "", ylab = "", col="blue")
-                  legend("topright", pch = "-", bty = "n", col = c("black", "red","blue"), 
-                        legend = c("Sub metering 1", "Sub metering 2", "Sub metering 3"))
+                  legend("topright", col = c("black", "red","blue"), bty="n", lty=1, 
+                         legend = c("Sub metering 1", "Sub metering 2", "Sub metering 3"))
+                              
             plot(DateTime, Global_reactive_power, xlab = "datetime", type="o")
       })
        
