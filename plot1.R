@@ -4,12 +4,14 @@
 plot1 <- function() {
       options(warn=-1)
       fn <- "household_power_consumption.txt"
-      sel_dates <- c('2/1/2007','2/2/2007')
+      sel_dates <- c('1/2/2007','2/2/2007')
       ##sel_dates <- c('1/2/2007')
-      hhpc_colclasses <- c("character","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric")
+      ##hhpc_colclasses <- c("character","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric")
       ##
+      ##hhpc <- fread(fn, header=TRUE, na.strings="?",stringsAsFactors=FALSE, 
+      ##            sep=";", colClasses = hhpc_colclasses)[Date %in% sel_dates]
       hhpc <- fread(fn, header=TRUE, na.strings="?",stringsAsFactors=FALSE, 
-                  sep=";", colClasses = hhpc_colclasses)[Date %in% sel_dates]
+                    sep=";", colClasses = "character")[Date %in% sel_dates]
       
       hhpc$Global_active_power <- as.numeric(hhpc$Global_active_power)
       
@@ -19,7 +21,7 @@ plot1 <- function() {
       ##print(ncol(hhpc))
       
       png("plot1.png", width=480, height=480, units="px")
-      hist(hhpc$Global_active_power, col = "red", main = "Global Active Power", xlim = c(0,6), 
+      hist(hhpc$Global_active_power, col = "red", main = "Global Active Power", 
                   xlab = "Global Active Power (kilowatts)")
       dev.off()
       

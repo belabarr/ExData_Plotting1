@@ -5,15 +5,15 @@ plot4 <- function() {
       options(warn=-1)
       
       fn <- "household_power_consumption.txt"
-      sel_dates <- c("2/1/2007","2/2/2007")
-      hhpc_colclasses <- c("character","character","character","character","character","character","character","character","character")
+      sel_dates <- c("1/2/2007","2/2/2007")
+      ##hhpc_colclasses <- c("character","character","character","character","character","character","character","character","character")
       ##hhpc_colclasses <- c("character","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric")
       ##
       
       hhpc <- fread(fn, header=TRUE, na.strings="?",stringsAsFactors=FALSE, sep=";", colClasses = "character")[Date %in% sel_dates]
       ## hhpc <- fread(fn, header=TRUE, na.strings="?",stringsAsFactors=FALSE, sep=";", colClasses = hhpc_colclasses)[Date %in% sel_dates]
       
-      hhpc$Date <- as.character(as.Date(as.character(hhpc$Date), format = "%m/%d/%Y"))
+      hhpc$Date <- as.character(as.Date(as.character(hhpc$Date), format = "%d/%m/%Y"))
       hhpc$DateTime <- as.POSIXct(paste(hhpc$Date, hhpc$Time), format="%Y-%m-%d %H:%M:%S")
       
       hhpc$Global_active_power <- as.numeric(hhpc$Global_active_power)
@@ -34,7 +34,7 @@ plot4 <- function() {
             plot(DateTime, Global_active_power, xlab = "", ylab = "Global Active Power", type="o")
             plot(DateTime, Voltage, xlab = "datetime", ylab = "Voltage", type="o")
             plot(DateTime, Sub_metering_3, main = "", ylim = c(0,30), xlab = "", ylab = "Energy sub metering")
-                  lines(hhpc$DateTime, hhpc$Sub_metering_1, type="o", xlab = "", ylab = "", col="green")
+                  lines(hhpc$DateTime, hhpc$Sub_metering_1, type="o", xlab = "", ylab = "")
                   lines(hhpc$DateTime, hhpc$Sub_metering_2, type="o", xlab = "", ylab = "", col="red")
                   lines(hhpc$DateTime, hhpc$Sub_metering_3, type="o", xlab = "", ylab = "", col="blue")
                   legend("topright", pch = "-", bty = "n", col = c("black", "red","blue"), 
